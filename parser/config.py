@@ -36,6 +36,9 @@ EMAIL_PASSWORD: str = os.getenv("EMAIL_PASSWORD", "")
 # Klarna URL
 URL: str = os.getenv("KLARNA_URL", "")
 
+# Date format
+DATE_FORMAT = "%Y-%m-%d"
+
 # Selenium setting
 CHROME_OPTIONS = Options()
 CHROME_OPTIONS.add_experimental_option("prefs", {"download.default_directory": str(DOWNLOAD_DIR)})
