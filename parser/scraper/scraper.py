@@ -5,9 +5,9 @@ Coordinates Klarna scraping workflow.
 from selenium.webdriver.support.ui import WebDriverWait
 from parser.tools import get_last_7_days, clean_download_folder
 from parser.config import URL, logger, DOWNLOAD_DIR
-from scraper.browser import create_driver, accept_cookies
-from scraper.login import login_with_otp
-from scraper.downloader import download_csv
+from .browser import create_driver, accept_cookies
+from .login import login_with_otp
+from .downloader import download_csv
 
 def run_scraper() -> None:
     """Executes the full Klarna scraping process."""

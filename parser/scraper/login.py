@@ -9,11 +9,13 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from time import sleep
 from parser.config import logger
-from scraper.email_reader import get_klarna_code
+from .email_reader import get_klarna_code
+from .browser import accept_cookies
 
 def login_with_otp(driver: WebDriver) -> None:
     """Logs into Klarna portal and enters OTP code from email."""
     wait = WebDriverWait(driver, 15)
+    accept_cookies(wait)
 
     # ------ Filling in login credentials
     logger.info("Filling in login credentials")
@@ -44,10 +46,10 @@ def login_with_otp(driver: WebDriver) -> None:
 
     # ------ Get Klarna code
     logger.info("Get Klarna code")
+    sleep(10)
     code = get_klarna_code()
     try:
         input_field = driver.find_element(By.TAG_NAME, "input")
-        sleep(10)
         input_field.send_keys(code)
         logger.info("OTP code intered")
     except Exception as e:

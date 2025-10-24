@@ -10,9 +10,14 @@ from parser.config import logger
 
 def get_klarna_code() -> str:
     """Connects to email via IMAP and extracts Klarna OTP code from the latest message."""
+    IMAP_SERVER = os.getenv("IMAP_SERVER")
+    IMAP_PORT = os.getenv("IMAP_PORT")
+    EMAIL_ADDRESS = os.getenv("EMAIL_ADDRESS")
+    EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
+    logger.debug(f"Connect to EMAIL:{EMAIL_ADDRESS} using PASSWORD:{EMAIL_PASSWORD} by {IMAP_SERVER}:{IMAP_PORT}")
     try:
-        mail = imaplib.IMAP4_SSL(os.getenv("IMAP_SERVER"), os.getenv("IMAP_PORT"))
-        mail.login(os.getenv("EMAIL_ADRESS"), os.getenv("EMAIL_PASSWORD"))
+        mail = imaplib.IMAP4_SSL(IMAP_SERVER, IMAP_PORT)
+        mail.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
         logger.info("Connected and logged to email in successfully")
     except Exception as e:
         logger.error(f"Connection failed: {e}")

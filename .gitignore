@@ -1,4 +1,5 @@
 .venv
 .env
 logs
+klarna_csv/*
 __pycache__

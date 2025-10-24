@@ -10,13 +10,14 @@ from pathlib import Path
 from dotenv import load_dotenv
 from selenium.webdriver.chrome.options import Options
 
-# Mode
-DEBUG_MODE: bool = os.getenv("DEBUG_MODE", "false").lower() == "true"
 
 # Load environment variable from .env file
 BASE_DIR = Path(__file__).resolve().parent.parent
 ENV_PATH = BASE_DIR / ".env"
 load_dotenv(dotenv_path=ENV_PATH)
+
+# Mode
+DEBUG_MODE: bool = os.getenv("DEBUG_MODE", "false").lower() == "true"
 
 # General path
 DOWNLOAD_DIR: Path = BASE_DIR / os.getenv("DOWNLOAD_DIR", "klarna_csv")
