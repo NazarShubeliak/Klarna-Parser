@@ -19,13 +19,16 @@ def clean_download_folder(folder_path: Path) -> None:
     Args:
         folder_path (Path): Path to the folder to be cleaned.
     """
+    if not folder_path.exists():
+        logger.error(f"Error not found: {folder_path}")
+        raise FileNotFoundError(f"Error not found: {folder_path}")
     for filename in os.listdir(folder_path):
         file_path = os.path.join(folder_path, filename)
         try:
             if os.path.isfile(file_path):
                 os.remove(file_path)
         except Exception as e:
-            logger.error(f"❌ Error while deleting: {file_path}: {e}")
+            logger.error(f"Error while deleting: {file_path}: {e}")
 
 
 def get_last_7_days() -> Tuple[str, str]:
