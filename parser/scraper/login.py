@@ -15,6 +15,7 @@ def login_with_otp(driver: WebDriver) -> None:
     """Logs into Klarna portal and enters OTP code from email."""
     wait = WebDriverWait(driver, 15)
 
+    # ------ Filling in login credentials
     logger.info("Filling in login credentials")
     try:
         username = wait.until(EC.presence_of_element_located((By.NAME, "username")))
@@ -30,6 +31,7 @@ def login_with_otp(driver: WebDriver) -> None:
         logger.error(f"Error while login: {e}")
         raise 
 
+    # ------ Switching to OTP iframe
     logger.info("Switching to OTP iframe")
     try:
         frame = driver.find_elements(By.TAG_NAME, "iframe")[2]
@@ -40,6 +42,7 @@ def login_with_otp(driver: WebDriver) -> None:
         logger.error(f"OTP button not found: {e}")
         raise
 
+    # ------ Get Klarna code
     logger.info("Get Klarna code")
     code = get_klarna_code()
     try:
