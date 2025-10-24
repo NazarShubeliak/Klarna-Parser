@@ -2,7 +2,7 @@
 Handles writing parsed Klarna data to Google Sheets.
 """
 
-from functools import lru_cache, wraps
+from functools import  wraps
 from typing import Any, Callable
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
@@ -11,11 +11,11 @@ from parser.config import GOOGLE_TOKEN_NAME, logger
 
 def require_rows(func: Callable) -> Callable:
     @wraps(func)
-    def wrapper(self, workheet: str, rows: list[list[Any]], *args, **kwargs):
+    def wrapper(self, worksheet_name: str, rows: list[list[Any]], *args, **kwargs):
         if not rows:
-            logger.error("No data passed to {func.__name__} for worksheet: {worksheet}")
+            logger.error(f"No data passed to {func.__name__} for worksheet: {worksheet_name}")
             raise TypeError("Missing rows")
-        return func(self, workheet, rows, *args, **kwargs)
+        return func(self, worksheet_name, rows, *args, **kwargs)
     return wrapper
 
 class SheetService:
@@ -46,7 +46,7 @@ class SheetService:
         scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
         creds = ServiceAccountCredentials.from_json_keyfile_name(GOOGLE_TOKEN_NAME, scope)
         client = gspread.authorize(creds)
-        logger.degub("Authorize complete")
+        logger.debug("Authorize complete")
 
         return client
 

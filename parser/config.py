@@ -20,7 +20,7 @@ load_dotenv(dotenv_path=ENV_PATH)
 DEBUG_MODE: bool = os.getenv("DEBUG_MODE", "false").lower() == "true"
 
 # Google API Token
-GOOGLE_TOKEN_NAME = os.get("GOOGLE_TOKEN_NAME")
+GOOGLE_TOKEN_NAME = os.getenv("GOOGLE_TOKEN")
 
 # General path
 DOWNLOAD_DIR: Path = BASE_DIR / os.getenv("DOWNLOAD_DIR", "klarna_csv")

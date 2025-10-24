@@ -26,8 +26,8 @@ def parse_csv_file() -> list[str]:
         return_rows = [row for row in reader if row[0] == "RETURN"]
 
     if not return_rows:
-        logger.error("Failed to parse CSV:", csv_file)
-        raise
+        logger.warning("Failed to parse CSV:", csv_file)
+        return []
 
     logger.info(f"Parsed CSV with {len(return_rows)} rows")
     return return_rows
