@@ -27,6 +27,7 @@ def clean_download_folder(folder_path: Path) -> None:
         try:
             if os.path.isfile(file_path):
                 os.remove(file_path)
+                logger.info("Clean download folder:", folder_path)
         except Exception as e:
             logger.error(f"Error while deleting: {file_path}: {e}")
 
@@ -39,5 +40,6 @@ def get_last_7_days() -> Tuple[str, str]:
 
     start_date_convert = start_date.strftime(DATE_FORMAT)
     end_date_convert = yesterday.strftime(DATE_FORMAT)
+    logger.info("Successfully received the date")
 
     return start_date_convert, end_date_convert
