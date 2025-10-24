@@ -4,12 +4,14 @@ Handles Klarna login and OTP verification.
 
 import os
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from time import sleep
 from parser.config import logger
+from scraper.email_reader import get_klarna_code
 
-def login_with_otp(driver: WebDriverWait) -> None:
+def login_with_otp(driver: WebDriver) -> None:
     """Logs into Klarna portal and enters OTP code from email."""
     wait = WebDriverWait(driver, 15)
 
@@ -39,8 +41,7 @@ def login_with_otp(driver: WebDriverWait) -> None:
         raise
 
     logger.info("Get Klarna code")
-    # code = get_klarna_code()
-    code = None
+    code = get_klarna_code()
     try:
         input_field = driver.find_element(By.TAG_NAME, "input")
         sleep(10)
