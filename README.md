@@ -14,7 +14,7 @@ This project automates the process of downloading Klarna refund reports, parsing
 ## Project Structure
 
 klarna_parser/
-├── parser/
+├── parser/\n
 │   ├── scraper.py
 │   ├── csv_loader.py
 │   ├── sheets.py
