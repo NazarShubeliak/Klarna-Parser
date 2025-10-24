@@ -55,9 +55,9 @@ Set the following values in your `.env` file or `config.py`:
 
 
 1. Clone the repository
-2. Create a virtual environment:
+2. Create a virtual environment and run:
    ```bash
    python -m venv .venv
    source .venv/bin/activate  # or .venv\Scripts\activate on Windows
    pip install -r requirements.txt
-3. python run.py
+   python run.py
