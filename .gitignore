@@ -4,3 +4,4 @@ logs
 klarna_csv/*
 token.json
 __pycache__
+run_klarna.bat
